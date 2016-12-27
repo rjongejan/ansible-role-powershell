@@ -1,0 +1,14 @@
+---
+    - name: Install Powershell (Centos)
+      become: yes
+      yum:
+        name: "{{ ps_base_url}}/v{{ ps_version }}/powershell-6.0.0_alpha.14-1.el{{ ansible_distribution_major_version }}.centos.x86_64.rpm"
+        state: present
+      when: ansible_os_family == 'Red Hat'
+
+    - name: Install Powershell (Ubuntu)
+      become: yes
+      apt:
+        deb: "{{ ps_base_url }}/v{{ ps_version }}/powershell_6.0.0-alpha.14-1ubuntu1.{{ ansible_distribution_major_version }}.04.1_amd64.deb"
+        state: present
+      when: ansible_os_family == 'Debian'
